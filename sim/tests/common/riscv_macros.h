@@ -102,11 +102,10 @@
 #define INTERRUPT_HANDLER j other_exception /* No interrupts should occur */
 
 #define RVTEST_CODE_BEGIN                                               \
-        
         .org 0x9C0, 0x00;                                               \
         MSG_TRAP:                                                       \
-        .string "misalign ";  
-        .section .text.init;                                            \                                                \
+        .string "Misalign!!";                                           \
+        .section .text.init;                                            \
         .balign  64;                                                    \
         .weak stvec_handler;                                            \
         .weak mtvec_handler;                                            \
@@ -151,7 +150,7 @@ _report:                                                                \
         j sc_exit;                                                      \
         .balign  64;                                                    \
         .globl _start;                                                  \
-        .section .text.start;     
+        .section .text.start;                                           \
 _start:                                                                 \
         RISCV_MULTICORE_DISABLE;                                        \
         /*INIT_SPTBR;*/                                                 \
